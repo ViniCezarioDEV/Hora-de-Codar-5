@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANCO</title>
+</head>
+<body>
+    <script>
+
+        const user = prompt('Digite seu Nome');
+        var saldo = 500;
+
+        function inicio(){
+            const choice = parseInt(prompt(`Olá ${user} Selecione uma opção:\n1. Ver Saldo\n2. Sacar dinheiro\n3. Depositar dinheiro\n4. Sair`
+            ));
+            switch(choice){
+                case 1:
+                    verSaldo();
+                    break;
+                case 2:
+                    sacarDinheiro();
+                    break;
+                case 3:
+                    depositarDinheiro();
+                case 4:
+                    alert('Você escolheu sair.')
+                    break;
+                default:
+                    alert('Operação INVALIDA! tente novamente.');
+                    inicio();
+            }
+        }
+        
+        function verSaldo(){
+            alert(`Seu Saldo é: ${saldo}`);
+            inicio();
+        }
+
+        function sacarDinheiro(){
+            const VALOR_DO_SAQUE = parseInt(prompt(`Informe o valor a ser sacado (Saldo: ${saldo})`));
+            if (VALOR_DO_SAQUE < 0){
+                alert('Sem saldo.');
+                inicio();
+            }else if (isNaN(VALOR_DO_SAQUE)){
+                alert('Operação inválida');
+                sacarDinheiro();
+            }else{
+                saldo -= VALOR_DO_SAQUE;
+                alert(`Seu novo saldo é: ${saldo}`);
+                inicio();
+            }
+        }
+
+        function depositarDinheiro(){
+            const VALOR_DO_DEPOSITO = parseInt(prompt(`Informe o valor a ser depositado`));
+            if (VALOR_DO_DEPOSITO < 0){
+                alert('Números negativos não são permitidos');
+                depositarDinheiro();
+            }else if (isNaN(VALOR_DO_DEPOSITO)){
+                alert('Operação inválida');
+                depositarDinheiro();
+            }else{
+                saldo += VALOR_DO_DEPOSITO;
+                alert(`Seu novo saldo é: ${saldo}`);
+                inicio();
+            }
+        }
+        
+        inicio()
+
+    </script>
+</body>
+</html>
